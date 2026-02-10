@@ -7,7 +7,7 @@ docker compose up --build
 ```
 
 
-## JWT (демо)
+## JWT
 Эндпоинт выдачи токена:
 
 ```bash
