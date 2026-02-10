@@ -1,0 +1,54 @@
+[versions]
+spring-boot = "3.3.7"
+spring-dependency-management = "1.1.7"
+lombok = "1.18.34"
+springdoc = "2.7.0"
+aws-bom = "2.41.24"
+jjwt = "0.12.6"
+testcontainers = "1.21.4"
+
+[libraries]
+# Lombok
+lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" }
+
+# Spring Boot
+spring-webflux = { group = "org.springframework.boot", name = "spring-boot-starter-webflux" }
+spring-security = { group = "org.springframework.boot", name = "spring-boot-starter-security" }
+spring-data-jpa = { group = "org.springframework.boot", name = "spring-boot-starter-data-jpa" }
+spring-validation = { group = "org.springframework.boot", name = "spring-boot-starter-validation" }
+spring-test = { group = "org.springframework.boot", name = "spring-boot-starter-test" }
+
+# Database & Flyway
+flyway-core = { group = "org.flywaydb", name = "flyway-core" }
+flyway-mysql = { group = "org.flywaydb", name = "flyway-mysql" }
+mysql-connector = { group = "com.mysql", name = "mysql-connector-j" }
+
+# Documentation
+springdoc-openapi = { group = "org.springdoc", name = "springdoc-openapi-starter-webflux-ui", version.ref = "springdoc" }
+
+# AWS SDK
+aws-bom = { group = "software.amazon.awssdk", name = "bom", version.ref = "aws-bom" }
+aws-s3 = { group = "software.amazon.awssdk", name = "s3" }
+aws-auth = { group = "software.amazon.awssdk", name = "auth" }
+
+# JWT
+jjwt-api = { group = "io.jsonwebtoken", name = "jjwt-api", version.ref = "jjwt" }
+jjwt-impl = { group = "io.jsonwebtoken", name = "jjwt-impl", version.ref = "jjwt" }
+jjwt-jackson = { group = "io.jsonwebtoken", name = "jjwt-jackson", version.ref = "jjwt" }
+
+# Testing
+reactor-test = { group = "io.projectreactor", name = "reactor-test" }
+mockito-core = { group = "org.mockito", name = "mockito-core" }
+testcontainers-jupiter = { group = "org.testcontainers", name = "junit-jupiter", version.ref = "testcontainers" }
+testcontainers-mysql = { group = "org.testcontainers", name = "mysql", version.ref = "testcontainers" }
+testcontainers-minio = { group = "org.testcontainers", name = "minio", version.ref = "testcontainers" }
+
+[bundles]
+spring-boot-base = ["spring-webflux", "spring-security", "spring-data-jpa", "spring-validation"]
+flyway = ["flyway-core", "flyway-mysql"]
+jjwt = ["jjwt-api", "jjwt-impl", "jjwt-jackson"]
+testcontainers = ["testcontainers-jupiter", "testcontainers-mysql", "testcontainers-minio"]
+
+[plugins]
+spring-boot = {id = "org.springframework.boot", version.ref = "spring-boot"}
+spring-dependency = {id = "io.spring.dependency-management", version.ref = "spring-dependency-management"}

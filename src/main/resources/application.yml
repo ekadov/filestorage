@@ -1,0 +1,44 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: filestorage
+  datasource:
+    url: jdbc:mysql://localhost:3306/app?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: ekadov
+    password: ekadov
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+  flyway:
+    enabled: true
+
+app:
+  jwt:
+    issuer: file-storage-api
+    secret: "secret_secret_secret_secret_secret_secret_secret_secret_secret"
+    accessTokenTtlSeconds: 3600
+  s3:
+    bucket: app-files
+    region: us-east-1
+    endpoint: http://localhost:9000
+    accessKey: minioadmin
+    secretKey: minioadmin
+
+logging:
+  level:
+    root: INFO
+    org.springframework: DEBUG
+    org.springframework.boot: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.springframework.data: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
+    org.flywaydb: DEBUG

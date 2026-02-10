@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    alias(libs.plugins.spring.boot)
+    alias(libs.plugins.spring.dependency)
+}
+
+group = 'com.eugene'
+version = '1.0.0'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly libs.lombok
+    annotationProcessor libs.lombok
+    testCompileOnly libs.lombok
+    testAnnotationProcessor libs.lombok
+
+    implementation libs.bundles.spring.boot.base
+    implementation libs.bundles.flyway
+
+    implementation platform(libs.aws.bom)
+    implementation libs.aws.s3
+    implementation libs.aws.auth
+
+    implementation libs.bundles.jjwt
+
+    runtimeOnly libs.mysql.connector
+
+    testImplementation libs.spring.test
+    testImplementation libs.reactor.test
+    testImplementation libs.mockito.core
+    testImplementation libs.bundles.testcontainers
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}
